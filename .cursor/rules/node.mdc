@@ -1,0 +1,6 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+node语法使用v16版本，因为要部署到云服务器，需要兼容centos7
