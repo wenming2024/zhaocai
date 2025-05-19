@@ -1,8 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const schedule = require('node-schedule');
-const { fetchAndSaveData } = require('./services/crawler');
-const dataRoutes = require('./routes/data');
+const { fetchLatestData, fetchHistoricalData } = require("./services/crawler");
+const dataRoutes = require("./routes/data");
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -12,16 +12,19 @@ app.use(cors());
 app.use(express.json());
 
 // 路由
-app.use('/api/data', dataRoutes);
+app.use("/api/data", dataRoutes);
+
+// 抓取历史数据
+fetchHistoricalData();
 
 // 定时任务：每天下午4点执行爬虫
-schedule.scheduleJob('0 16 * * *', async () => {
-  console.log('开始执行每日数据抓取任务...');
+schedule.scheduleJob("0 18 * * *", async () => {
+  console.log("开始执行每日数据抓取任务...");
   try {
-    await fetchAndSaveData();
-    console.log('数据抓取完成');
+    await fetchLatestData();
+    console.log("数据抓取完成");
   } catch (error) {
-    console.error('数据抓取失败:', error);
+    console.error("数据抓取失败:", error);
   }
 });
 

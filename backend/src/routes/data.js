@@ -4,7 +4,7 @@ const fs = require('fs').promises;
 const path = require('path');
 const moment = require('moment');
 
-const DATA_FILE = path.join(__dirname, '../../data/trading_data.txt');
+const DATA_FILE = path.join(__dirname, "../data/hk_south_trading_data.txt");
 
 // 获取指定日期范围的数据
 router.get('/range', async (req, res) => {

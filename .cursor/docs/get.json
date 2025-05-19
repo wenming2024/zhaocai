@@ -1,0 +1,31 @@
+{
+  "version": "dab55b4fbce70e153affd1c16e281ce8",
+  "result": {
+    "pages": 2395,
+    "data": [
+      {
+        "MUTUAL_TYPE": "006",
+        "TRADE_DATE": "2025-05-16 00:00:00",
+        "FUND_INFLOW": null,
+        "NET_DEAL_AMT": 1095.4,
+        "QUOTA_BALANCE": null,
+        "ACCUM_DEAL_AMT": 4301699.35,
+        "BUY_AMT": 41180.84,
+        "SELL_AMT": 40085.44,
+        "LEAD_STOCKS_CODE": "00200.HK",
+        "LEAD_STOCKS_NAME": "新濠国际发展",
+        "LS_CHANGE_RATE": 21.4,
+        "INDEX_CLOSE_PRICE": 23345.05,
+        "INDEX_CHANGE_RATE": -0.46,
+        "HOLD_MARKET_CAP": 9388817587480.8,
+        "DEAL_AMT": 81266.28,
+        "QUOTA_BALANCE_TEXT": "额度充足",
+        "DEAL_NUM": 1549048
+      }
+    ],
+    "count": 2395
+  },
+  "success": true,
+  "message": "ok",
+  "code": 0
+}

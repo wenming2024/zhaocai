@@ -1,15 +1,25 @@
 <template>
   <div class="data-view">
-    <h1>港股交易量数据</h1>
+    <h1>港股南向交易量数据</h1>
     
     <div class="date-range">
+      <div class="quick-select">
+        <el-button 
+          v-for="days in [7, 14, 30, 60, 90, 180, 360]" 
+          :key="days"
+          :type="selectedDays === days ? 'primary' : 'default'"
+          @click="selectDateRange(days)"
+        >
+          近{{ days }}天
+        </el-button>
+      </div>
       <el-date-picker
         v-model="dateRange"
         type="daterange"
         range-separator="至"
         start-placeholder="开始日期"
         end-placeholder="结束日期"
-        @change="fetchData"
+        @change="handleDateChange"
       />
     </div>
 
@@ -26,12 +36,27 @@ import moment from 'moment'
 const API_BASE_URL = 'http://localhost:3000/api'
 const chartContainer = ref(null)
 const dateRange = ref([])
+const selectedDays = ref(30) // 默认选中30天
 let chart = null
 
 const initChart = () => {
   if (chartContainer.value) {
     chart = echarts.init(chartContainer.value)
   }
+}
+
+const selectDateRange = (days) => {
+  selectedDays.value = days
+  const end = new Date()
+  const start = new Date()
+  start.setDate(start.getDate() - days)
+  dateRange.value = [start, end]
+  fetchData()
+}
+
+const handleDateChange = () => {
+  selectedDays.value = null // 手动选择日期时，清除快捷选择的选中状态
+  fetchData()
 }
 
 const fetchData = async () => {
@@ -55,25 +80,25 @@ const fetchData = async () => {
 const updateChart = (data) => {
   if (!chart) return
 
-  const dates = data.map(item => item.date)
-  const totalVolume = data.map(item => item.totalVolume)
-  const hkConnectVolume = data.map(item => item.hkConnectVolume)
-  const shConnectVolume = data.map(item => item.shConnectVolume)
-  const szConnectVolume = data.map(item => item.szConnectVolume)
+  const dates = data.map(item => item.date).reverse()
+  const totalVolume = data.map(item => (item.totalVolume / 100).toFixed(2)).reverse()
+  const todayNetBuyVolume = data.map(item => (item.todayNetBuyVolume / 100).toFixed(2)).reverse()
+  const todayVolume = data.map(item => (item.todayVolume / 100).toFixed(2)).reverse()
 
   const option = {
     title: {
-      text: '港股交易量趋势'
+      text: '港股南向交易量趋势'
     },
     tooltip: {
       trigger: 'axis'
     },
     legend: {
-      data: ['总交易量', '港股通', '沪股通', '深股通']
+      data: ['南向累计净买入额', '南向今日交易量', '南向今日净买入额']
     },
     xAxis: {
       type: 'category',
       data: dates
+
     },
     yAxis: {
       type: 'value',
@@ -81,25 +106,20 @@ const updateChart = (data) => {
     },
     series: [
       {
-        name: '总交易量',
+        name: '南向累计净买入额(亿)',
         type: 'line',
         data: totalVolume
       },
       {
-        name: '港股通',
+        name: '南向今日交易量(亿)',
         type: 'line',
-        data: hkConnectVolume
+        data: todayVolume
       },
       {
-        name: '沪股通',
+        name: '南向今日净买入额(亿)',
         type: 'line',
-        data: shConnectVolume
+        data: todayNetBuyVolume
       },
-      {
-        name: '深股通',
-        type: 'line',
-        data: szConnectVolume
-      }
     ]
   }
 
@@ -109,11 +129,7 @@ const updateChart = (data) => {
 onMounted(() => {
   initChart()
   // 设置默认日期范围为最近30天
-  const end = new Date()
-  const start = new Date()
-  start.setDate(start.getDate() - 30)
-  dateRange.value = [start, end]
-  fetchData()
+  selectDateRange(30)
 
   window.addEventListener('resize', () => {
     chart?.resize()
@@ -135,6 +151,15 @@ onUnmounted(() => {
 
 .date-range {
   margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.quick-select {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .chart-container {
