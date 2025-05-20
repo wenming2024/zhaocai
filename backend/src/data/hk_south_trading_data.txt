@@ -1,5 +1,16 @@
 [
   {
+    "date": "2025-05-20 00:00:00",
+    "totalVolume": 4316490.21,
+    "todayVolume": 92205.09,
+    "todayBuyVolume": 49268.31,
+    "todaySellVolume": 42936.78,
+    "todayNetBuyVolume": 6331.529999999999,
+    "leadStocksCode": "01530.HK",
+    "leadStocksName": "三生制药",
+    "leadStocksChangeRate": 32.28
+  },
+  {
     "date": "2025-05-19 00:00:00",
     "totalVolume": 4310158.68,
     "todayVolume": 84498.31,
