@@ -1,5 +1,38 @@
 [
   {
+    "date": "2025-05-23 00:00:00",
+    "totalVolume": 4320658.1,
+    "todayVolume": 96364.73,
+    "todayBuyVolume": 47612.67,
+    "todaySellVolume": 48752.06,
+    "todayNetBuyVolume": -1139.3899999999994,
+    "leadStocksCode": "02981.HK",
+    "leadStocksName": "富智康集团",
+    "leadStocksChangeRate": 22.62
+  },
+  {
+    "date": "2025-05-22 00:00:00",
+    "totalVolume": 4321797.49,
+    "todayVolume": 90128.3,
+    "todayBuyVolume": 47004.38,
+    "todaySellVolume": 43123.92,
+    "todayNetBuyVolume": 3880.459999999999,
+    "leadStocksCode": "06683.HK",
+    "leadStocksName": "巨星传奇",
+    "leadStocksChangeRate": 26.25
+  },
+  {
+    "date": "2025-05-21 00:00:00",
+    "totalVolume": 4317917.03,
+    "todayVolume": 93412.36,
+    "todayBuyVolume": 47419.59,
+    "todaySellVolume": 45992.77,
+    "todayNetBuyVolume": 1426.8199999999997,
+    "leadStocksCode": "01060.HK",
+    "leadStocksName": "阿里影业",
+    "leadStocksChangeRate": 22.95
+  },
+  {
     "date": "2025-05-20 00:00:00",
     "totalVolume": 4316490.21,
     "todayVolume": 92205.09,
@@ -2822,9 +2855,9 @@
     "todayBuyVolume": 19542.42,
     "todaySellVolume": 13397.43,
     "todayNetBuyVolume": 6144.989999999998,
-    "leadStocksCode": "02038.HK",
-    "leadStocksName": "富智康集团",
-    "leadStocksChangeRate": 14.86
+    "leadStocksCode": "01818.HK",
+    "leadStocksName": "招金矿业",
+    "leadStocksChangeRate": 6.56
   },
   {
     "date": "2024-04-11 00:00:00",
@@ -2844,9 +2877,9 @@
     "todayBuyVolume": 18092.04,
     "todaySellVolume": 15767.38,
     "todayNetBuyVolume": 2324.6600000000017,
-    "leadStocksCode": "02038.HK",
-    "leadStocksName": "富智康集团",
-    "leadStocksChangeRate": 16.95
+    "leadStocksCode": "09676.HK",
+    "leadStocksName": "十月稻田",
+    "leadStocksChangeRate": 15.03
   },
   {
     "date": "2024-04-09 00:00:00",
@@ -4109,9 +4142,9 @@
     "todayBuyVolume": 12661.76,
     "todaySellVolume": 18145.07,
     "todayNetBuyVolume": -5483.3099999999995,
-    "leadStocksCode": "02038.HK",
-    "leadStocksName": "富智康集团",
-    "leadStocksChangeRate": 14.29
+    "leadStocksCode": "00921.HK",
+    "leadStocksName": "海信家电",
+    "leadStocksChangeRate": 12.68
   },
   {
     "date": "2023-10-11 00:00:00",
@@ -10940,9 +10973,9 @@
     "todayBuyVolume": 34680.96,
     "todaySellVolume": 20046.18,
     "todayNetBuyVolume": 14634.779999999999,
-    "leadStocksCode": "02038.HK",
-    "leadStocksName": "富智康集团",
-    "leadStocksChangeRate": 21.31
+    "leadStocksCode": "02866.HK",
+    "leadStocksName": "中远海发",
+    "leadStocksChangeRate": 11.69
   },
   {
     "date": "2021-01-13 00:00:00",
@@ -10951,9 +10984,9 @@
     "todayBuyVolume": 33758.5,
     "todaySellVolume": 21851.19,
     "todayNetBuyVolume": 11907.310000000001,
-    "leadStocksCode": "02038.HK",
-    "leadStocksName": "富智康集团",
-    "leadStocksChangeRate": 18.45
+    "leadStocksCode": "03898.HK",
+    "leadStocksName": "时代电气",
+    "leadStocksChangeRate": 13.99
   },
   {
     "date": "2021-01-12 00:00:00",
@@ -13822,9 +13855,9 @@
     "todayBuyVolume": 5742.94,
     "todaySellVolume": 3615.6,
     "todayNetBuyVolume": 2127.3399999999997,
-    "leadStocksCode": "02038.HK",
-    "leadStocksName": "富智康集团",
-    "leadStocksChangeRate": 6.09
+    "leadStocksCode": "02331.HK",
+    "leadStocksName": "李宁",
+    "leadStocksChangeRate": 5.37
   },
   {
     "date": "2019-11-19 00:00:00",
@@ -14636,9 +14669,9 @@
     "todayBuyVolume": 4088.03,
     "todaySellVolume": 3051.1,
     "todayNetBuyVolume": 1036.9300000000003,
-    "leadStocksCode": "02038.HK",
-    "leadStocksName": "富智康集团",
-    "leadStocksChangeRate": 22.09
+    "leadStocksCode": "01302.HK",
+    "leadStocksName": "先健科技",
+    "leadStocksChangeRate": 9.35
   },
   {
     "date": "2019-07-24 00:00:00",
@@ -15307,9 +15340,9 @@
     "todayBuyVolume": 7419.3,
     "todaySellVolume": 6858.18,
     "todayNetBuyVolume": 561.1199999999999,
-    "leadStocksCode": "02038.HK",
-    "leadStocksName": "富智康集团",
-    "leadStocksChangeRate": 28.18
+    "leadStocksCode": "01211.HK",
+    "leadStocksName": "比亚迪股份",
+    "leadStocksChangeRate": 13.71
   },
   {
     "date": "2019-04-16 00:00:00",
@@ -15318,9 +15351,9 @@
     "todayBuyVolume": 7545.09,
     "todaySellVolume": 6507.71,
     "todayNetBuyVolume": 1037.38,
-    "leadStocksCode": "02038.HK",
-    "leadStocksName": "富智康集团",
-    "leadStocksChangeRate": 14.58
+    "leadStocksCode": "00763.HK",
+    "leadStocksName": "中兴通讯",
+    "leadStocksChangeRate": 7.66
   },
   {
     "date": "2019-04-15 00:00:00",
@@ -16264,9 +16297,9 @@
     "todayBuyVolume": 2421.33,
     "todaySellVolume": 3433.51,
     "todayNetBuyVolume": -1012.1800000000003,
-    "leadStocksCode": "02038.HK",
-    "leadStocksName": "富智康集团",
-    "leadStocksChangeRate": 7.87
+    "leadStocksCode": "00696.HK",
+    "leadStocksName": "中国民航信息网络",
+    "leadStocksChangeRate": 6.52
   },
   {
     "date": "2018-11-26 00:00:00",
@@ -16341,9 +16374,9 @@
     "todayBuyVolume": 4506.64,
     "todaySellVolume": 4452.07,
     "todayNetBuyVolume": 54.57000000000062,
-    "leadStocksCode": "02038.HK",
-    "leadStocksName": "富智康集团",
-    "leadStocksChangeRate": 9.76
+    "leadStocksCode": "00552.HK",
+    "leadStocksName": "中国通信服务",
+    "leadStocksChangeRate": 7.48
   },
   {
     "date": "2018-11-15 00:00:00",
@@ -16473,9 +16506,9 @@
     "todayBuyVolume": 3822.84,
     "todaySellVolume": 4295.06,
     "todayNetBuyVolume": -472.22000000000025,
-    "leadStocksCode": "02038.HK",
-    "leadStocksName": "富智康集团",
-    "leadStocksChangeRate": 10.61
+    "leadStocksCode": "01316.HK",
+    "leadStocksName": "耐世特",
+    "leadStocksChangeRate": 9.78
   },
   {
     "date": "2018-10-30 00:00:00",
@@ -17067,9 +17100,9 @@
     "todayBuyVolume": 4020.46,
     "todaySellVolume": 5009.88,
     "todayNetBuyVolume": -989.4200000000001,
-    "leadStocksCode": "02038.HK",
-    "leadStocksName": "富智康集团",
-    "leadStocksChangeRate": 4.39
+    "leadStocksCode": "00460.HK",
+    "leadStocksName": "四环医药",
+    "leadStocksChangeRate": 3.68
   },
   {
     "date": "2018-07-30 00:00:00",
@@ -17551,9 +17584,9 @@
     "todayBuyVolume": 6126.89,
     "todaySellVolume": 6344.19,
     "todayNetBuyVolume": -217.29999999999927,
-    "leadStocksCode": "02038.HK",
-    "leadStocksName": "富智康集团",
-    "leadStocksChangeRate": 11.68
+    "leadStocksCode": "02669.HK",
+    "leadStocksName": "中海物业",
+    "leadStocksChangeRate": 8.65
   },
   {
     "date": "2018-05-25 00:00:00",
@@ -17650,9 +17683,9 @@
     "todayBuyVolume": 6834.65,
     "todaySellVolume": 8205.62,
     "todayNetBuyVolume": -1370.9700000000012,
-    "leadStocksCode": "02038.HK",
-    "leadStocksName": "富智康集团",
-    "leadStocksChangeRate": 19.05
+    "leadStocksCode": "00148.HK",
+    "leadStocksName": "建滔集团",
+    "leadStocksChangeRate": 8.82
   },
   {
     "date": "2018-05-11 00:00:00",
@@ -20796,9 +20829,9 @@
     "todayBuyVolume": 5271.54,
     "todaySellVolume": 2341.27,
     "todayNetBuyVolume": 2930.27,
-    "leadStocksCode": "02038.HK",
-    "leadStocksName": "富智康集团",
-    "leadStocksChangeRate": 8.33
+    "leadStocksCode": "00323.HK",
+    "leadStocksName": "马鞍山钢铁股份",
+    "leadStocksChangeRate": 6.25
   },
   {
     "date": "2017-02-09 00:00:00",

@@ -8,37 +8,54 @@
     <!-- 四大核心指标 -->
     <div class="core-metrics">
       <div class="metric">
-        <div class="icon income"></div>
-        <div class="value">+26%</div>
-        <div class="desc">股票年化增长率<br/>(过去5年)</div>
+        <div class="icon-bg">
+          <el-icon><TrendCharts /></el-icon>
+        </div>
+        <div class="metric-content">
+          <div class="value">+26%</div>
+          <div class="desc">股票年化增长率<br/>(过去5年)</div>
+        </div>
       </div>
       <div class="metric">
-        <div class="icon gross"></div>
-        <div class="value">58%</div>
-        <div class="desc">毛利率<br/>(去年)</div>
+        <div class="icon-bg">
+          <el-icon><PieChart /></el-icon>
+        </div>
+        <div class="metric-content">
+          <div class="value">58%</div>
+          <div class="desc">毛利率<br/>(去年)</div>
+        </div>
       </div>
       <div class="metric">
-        <div class="icon fcf"></div>
-        <div class="value">16%</div>
-        <div class="desc">FCF利润率<br/>(去年)</div>
+        <div class="icon-bg">
+          <el-icon><Coin /></el-icon>
+        </div>
+        <div class="metric-content">
+          <div class="value">16%</div>
+          <div class="desc">FCF利润率<br/>(去年)</div>
+        </div>
       </div>
       <div class="metric">
-        <div class="icon value"></div>
-        <div class="value">$176</div>
-        <div class="desc">公允价值</div>
+        <div class="icon-bg">
+          <el-icon><PriceTag /></el-icon>
+        </div>
+        <div class="metric-content">
+          <div class="value">$176</div>
+          <div class="desc">公允价值</div>
+        </div>
       </div>
     </div>
     <!-- 营收&FCF、收入来源、区域收入分布 -->
     <div class="charts-row">
-      <div class="chart-block">
+      <div class="chart-block bar">
         <div class="block-title">营收 & FCF</div>
+        <div class="sub-title">增长率%</div>
         <div ref="barChart" class="bar-chart"></div>
       </div>
-      <div class="chart-block">
+      <div class="chart-block pie">
         <div class="block-title">收入来源</div>
         <div ref="pieChart" class="pie-chart"></div>
       </div>
-      <div class="chart-block">
+      <div class="chart-block region">
         <div class="block-title">区域收入分布</div>
         <div class="region-pie">
           <div class="region-bubble us">US</div>
@@ -143,7 +160,8 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import * as echarts from 'echarts'
-import { ElProgress, ElRate } from 'element-plus'
+import { ElProgress, ElRate, ElIcon } from 'element-plus'
+import { TrendCharts, PieChart, Coin, PriceTag } from '@element-plus/icons-vue'
 
 const barrier = ref(4.0)
 const product = ref(4.5)
@@ -154,37 +172,88 @@ const barChart = ref(null)
 const pieChart = ref(null)
 
 onMounted(() => {
-  // 营收&FCF折线图
+  // 美化后的营收&FCF折线图
   const bar = echarts.init(barChart.value)
   bar.setOption({
+    grid: { left: 40, right: 20, top: 40, bottom: 30 },
+    backgroundColor: '#f8f1e6',
     tooltip: { trigger: 'axis' },
-    legend: { data: ['营收', 'FCF自由现金流'] },
-    xAxis: { type: 'category', data: ['2020', '2021', '2022', '2023', 'LTM'] },
-    yAxis: { type: 'value' },
+    legend: {
+      data: [
+        { name: '营收', icon: 'circle' },
+        { name: 'FCF自由现金流', icon: 'circle' }
+      ],
+      top: 8,
+      left: 80,
+      itemWidth: 16,
+      itemHeight: 16,
+      textStyle: { fontWeight: 'bold', fontSize: 15 }
+    },
+    xAxis: {
+      type: 'category',
+      data: ['2020', '2021', '2022', '2023', 'LTM'],
+      axisLabel: { fontWeight: 'bold', fontSize: 15 },
+      axisLine: { lineStyle: { color: '#333', width: 2 } }
+    },
+    yAxis: {
+      type: 'value',
+      min: -10,
+      max: 60,
+      axisLabel: { fontWeight: 'bold', fontSize: 15 },
+      axisLine: { lineStyle: { color: '#333', width: 2 } },
+      splitLine: { lineStyle: { color: '#e0e0e0' } }
+    },
     series: [
-      { name: '营收', type: 'line', data: [20, 40, 60, 30, 10], smooth: true, symbol: 'circle', lineStyle: { color: '#FF6F00' }, itemStyle: { color: '#FF6F00' } },
-      { name: 'FCF自由现金流', type: 'line', data: [10, 30, 50, 20, 5], smooth: true, symbol: 'circle', lineStyle: { color: '#2196F3' }, itemStyle: { color: '#2196F3' } }
+      {
+        name: '营收',
+        type: 'line',
+        data: [13, 32, 40, 12, 13],
+        smooth: false,
+        symbol: 'circle',
+        symbolSize: 12,
+        lineStyle: { color: '#e74c3c', width: 4 },
+        itemStyle: { color: '#e74c3c', borderWidth: 2, borderColor: '#fff' }
+      },
+      {
+        name: 'FCF自由现金流',
+        type: 'line',
+        data: [38, 54, -8, 15, 10],
+        smooth: false,
+        symbol: 'circle',
+        symbolSize: 12,
+        lineStyle: { color: '#2986f7', width: 4 },
+        itemStyle: { color: '#2986f7', borderWidth: 2, borderColor: '#fff' }
+      }
     ]
   })
-  // 收入来源饼图
+  // 美化后的收入来源环形图
   const pie = echarts.init(pieChart.value)
   pie.setOption({
+    backgroundColor: '#f8f1e6',
     tooltip: { trigger: 'item' },
-    legend: { orient: 'vertical', left: 'left', data: ['搜索业务', '订阅服务', '云服务', 'YouTube', '其他'] },
     series: [
       {
         name: '收入来源',
         type: 'pie',
-        radius: '70%',
-        center: ['60%', '55%'],
+        radius: ['40%', '68%'],
+        center: ['58%', '54%'],
+        label: {
+          show: true,
+          position: 'inside',
+          formatter: '{name|{b}}\n{percent|{d}%}',
+          rich: {
+            name: { align: 'center', fontSize: 11, fontWeight: 'bold', color: '#333', lineHeight: 16 },
+            percent: { align: 'center', fontSize: 11, color: '#333', lineHeight: 16 }
+          }
+        },
+        labelLine: { show: false },
         data: [
-          { value: 57, name: '搜索业务', itemStyle: { color: '#FFEB3B' } },
-          { value: 11, name: '订阅服务', itemStyle: { color: '#4CAF50' } },
-          { value: 11, name: '云服务', itemStyle: { color: '#2196F3' } },
-          { value: 10, name: 'YouTube', itemStyle: { color: '#FF5252' } },
-          { value: 11, name: '其他', itemStyle: { color: '#BDBDBD' } }
-        ],
-        label: { formatter: '{b}\n{d}%' }
+          { value: 57, name: '搜索业务', itemStyle: { color: '#e74c3c' } },
+          { value: 11, name: '订阅服务', itemStyle: { color: '#2986f7' } },
+          { value: 11, name: '云服务', itemStyle: { color: '#f7d358' } },
+          { value: 10, name: 'YouTube', itemStyle: { color: '#6fcf97' } },
+          { value: 11, name: '其他', itemStyle: { color: '#666' } }
+        ]
       }
     ]
   })
@@ -202,13 +271,16 @@ onMounted(() => {
   font-family: 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
 }
 .header {
+  position: relative;
+  width: 100%;
+  height: 90px;
   display: flex;
-  align-items: baseline;
-  gap: 16px;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 18px;
 }
 .google-logo {
-  font-size: 48px;
+  font-size: 72px;
   font-weight: bold;
   letter-spacing: 2px;
   font-family: 'Product Sans', 'Arial', sans-serif;
@@ -216,12 +288,17 @@ onMounted(() => {
   background: linear-gradient(90deg, #4285f4 0%, #ea4335 30%, #fbbc05 60%, #34a853 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  display: inline-block;
 }
 .alphabet {
-  font-size: 28px;
+  position: absolute;
+  right: 10px;
+  bottom: 0;
+  font-size: 36px;
   color: #ea4335;
   font-weight: 500;
   letter-spacing: 1px;
+  font-family: 'Arial', sans-serif;
 }
 .core-metrics {
   display: flex;
@@ -234,56 +311,92 @@ onMounted(() => {
   border-radius: 12px;
   flex: 1;
   padding: 18px 0 10px 0;
-  text-align: center;
+  text-align: left;
   box-shadow: 0 1px 6px 0 #ececec;
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
-.metric .icon {
-  width: 32px;
-  height: 32px;
-  margin: 0 auto 8px auto;
-  background-size: contain;
-  background-repeat: no-repeat;
+.icon-bg {
+  width: 48px;
+  height: 48px;
+  background: #222;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 18px;
 }
-.metric .income { background-image: url('https://img.icons8.com/ios-filled/50/26e07f/growth.png'); }
-.metric .gross { background-image: url('https://img.icons8.com/ios-filled/50/fbbc05/percent.png'); }
-.metric .fcf { background-image: url('https://img.icons8.com/ios-filled/50/2196f3/money-bag.png'); }
-.metric .value { font-size: 28px; font-weight: bold; margin-bottom: 2px; }
-.metric .desc { font-size: 14px; color: #888; }
-.metric .value, .metric .desc { display: block; }
-.metric .value { color: #333; }
-.metric .value:last-child { color: #2196f3; }
-.metric .value:first-child { color: #26e07f; }
-.metric .value:nth-child(2) { color: #fbbc05; }
-.metric .value:nth-child(3) { color: #2196f3; }
-.metric .value:nth-child(4) { color: #333; }
+.icon-bg .el-icon, .icon-bg .iconfont {
+  font-size: 26px;
+  color: #fff;
+}
+.metric-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.metric-content .value {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 2px;
+  color: #333;
+}
+.metric-content .desc {
+  font-size: 14px;
+  color: #888;
+}
 .charts-row {
   display: flex;
   gap: 18px;
   margin-bottom: 18px;
+  background: #f8f1e6;
+  border: 2px solid #222;
+  border-radius: 8px;
+  padding: 18px 0 8px 0;
 }
 .chart-block {
-  background: #f5f5f5;
-  border-radius: 12px;
+  background: transparent;
+  border-radius: 0;
   flex: 1;
-  padding: 12px 12px 8px 12px;
-  box-shadow: 0 1px 6px 0 #ececec;
+  padding: 0 12px 0 12px;
+  box-shadow: none;
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-width: 0;
+  position: relative;
 }
+.chart-block.bar { border-right: 2px solid #d2c3a5; }
+.chart-block.pie { border-right: 2px solid #d2c3a5; }
 .block-title {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 0;
+  color: #111;
+  text-align: left;
+  width: 100%;
+  line-height: 1.1;
+}
+.sub-title {
   font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 8px;
-  color: #333;
+  color: #222;
+  font-weight: 500;
+  margin-bottom: 0;
+  margin-top: 2px;
+  margin-left: 2px;
+  width: 100%;
+  text-align: left;
 }
 .bar-chart {
-  width: 220px;
-  height: 120px;
+  width: 320px;
+  height: 200px;
+  margin-top: 8px;
 }
 .pie-chart {
-  width: 180px;
-  height: 140px;
+  width: 300px;
+  height: 240px;
+  margin-top: 18px;
 }
 .region-pie {
   display: flex;
@@ -291,8 +404,8 @@ onMounted(() => {
   justify-content: center;
   align-items: center;
   gap: 8px;
-  height: 120px;
-  margin-top: 16px;
+  height: 180px;
+  margin-top: 32px;
 }
 .region-bubble {
   display: flex;
@@ -301,15 +414,13 @@ onMounted(() => {
   border-radius: 50%;
   color: #fff;
   font-weight: bold;
-  font-size: 18px;
-  width: 60px;
-  height: 60px;
+  font-size: 22px;
   box-shadow: 0 2px 8px #e0e0e0;
 }
-.region-bubble.us { background: #4285f4; width: 80px; height: 80px; font-size: 22px; }
-.region-bubble.emea { background: #34a853; }
-.region-bubble.apac { background: #fbbc05; color: #333; }
-.region-bubble.other { background: #bdbdbd; color: #333; font-size: 16px; }
+.region-bubble.us { background: #2986f7; width: 90px; height: 90px; font-size: 28px; }
+.region-bubble.emea { background: #3b5998; width: 70px; height: 70px; font-size: 22px; }
+.region-bubble.apac { background: #7b8dbb; width: 54px; height: 54px; font-size: 18px; }
+.region-bubble.other { background: #111; width: 44px; height: 44px; font-size: 16px; }
 .kpi-row {
   display: flex;
   gap: 18px;
