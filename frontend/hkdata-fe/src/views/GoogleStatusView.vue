@@ -13,7 +13,7 @@
         </div>
         <div class="metric-content">
           <div class="value">+26%</div>
-          <div class="desc">股票年化增长率<br/>(过去5年)</div>
+          <div class="desc">股票年化增长率(过去5年)</div>
         </div>
       </div>
       <div class="metric">
@@ -22,7 +22,7 @@
         </div>
         <div class="metric-content">
           <div class="value">58%</div>
-          <div class="desc">毛利率<br/>(去年)</div>
+          <div class="desc">毛利率(去年)</div>
         </div>
       </div>
       <div class="metric">
@@ -31,7 +31,7 @@
         </div>
         <div class="metric-content">
           <div class="value">16%</div>
-          <div class="desc">FCF利润率<br/>(去年)</div>
+          <div class="desc">FCF利润率(去年)</div>
         </div>
       </div>
       <div class="metric">
@@ -68,89 +68,170 @@
     <!-- 关键指标、经营评级、财务数据 -->
     <div class="kpi-row">
       <div class="kpi-block">
-        <div class="block-title">关键指标</div>
-        <div class="kpi-item">
-          <span>云服务增长率</span>
-          <span class="kpi-value green">+30%</span>
+        <div class="block-title-with-icon">
+          <span class="block-icon kpi"><el-icon><Search /></el-icon></span>
+          <div class="block-title-text">
+            <span class="block-title">关键指标</span>
+            <span class="block-subtitle">2024年</span>
+          </div>
         </div>
         <div class="kpi-item">
-          <span>YouTube广告收入增长</span>
-          <el-progress :percentage="14" :show-text="false" color="#FFD600" style="width: 60%"/>
-          <span class="kpi-value yellow">+14%</span>
+          <div class="kpi-desc">云服务增长率</div>
+          <div class="kpi-bar-row">
+            <el-progress class="kpi-progress" :percentage="100" :show-text="false" color="#00B050"/>
+            <span class="kpi-value">+30%</span>
+          </div>
         </div>
         <div class="kpi-item">
-          <span>搜索业务增长</span>
-          <el-progress :percentage="12" :show-text="false" color="#00B050" style="width: 60%"/>
-          <span class="kpi-value blue">+12%</span>
+          <div class="kpi-desc">YouTube广告收入增长</div>
+          <div class="kpi-bar-row">
+            <el-progress class="kpi-progress" :percentage="14" :show-text="false" color="#FFD600"/>
+            <span class="kpi-value">+14%</span>
+          </div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-desc">搜索业务增长</div>
+          <div class="kpi-bar-row">
+            <el-progress class="kpi-progress" :percentage="12" :show-text="false" color="#00B050"/>
+            <span class="kpi-value">+12%</span>
+          </div>
         </div>
       </div>
       <div class="kpi-block">
-        <div class="block-title">经营评级</div>
-        <div class="rating-item">
-          <span>壁垒深度</span>
-          <el-rate v-model="barrier" disabled allow-half :max="5" />
+        <div class="block-title-with-icon">
+          <span class="block-icon rating"><el-icon><Search /></el-icon></span>
+          <div class="block-title-text">
+            <span class="block-title">经营评级</span>
+            <span class="block-subtitle">2024年</span>
+          </div>
         </div>
         <div class="rating-item">
-          <span>产品反馈</span>
-          <el-rate v-model="product" disabled allow-half :max="5" />
+          <div class="rating-label">管理效率</div>
+          <div class="rating-bar-row">
+            <el-rate v-model="barrier" disabled allow-half :max="5" />
+            <span class="rating-score">{{ barrier.toFixed(1) }}</span>
+          </div>
         </div>
         <div class="rating-item">
-          <span>公司团队</span>
-          <el-rate v-model="team" disabled allow-half :max="5" />
+          <div class="rating-label">产品反馈</div>
+          <div class="rating-bar-row">
+            <el-rate v-model="product" disabled allow-half :max="5" />
+            <span class="rating-score">{{ product.toFixed(1) }}</span>
+          </div>
         </div>
         <div class="rating-item">
-          <span>护城河</span>
-          <el-rate v-model="moat" disabled allow-half :max="5" />
+          <div class="rating-label">公司团队</div>
+          <div class="rating-bar-row">
+            <el-rate v-model="team" disabled allow-half :max="5" />
+            <span class="rating-score">{{ team.toFixed(1) }}</span>
+          </div>
+        </div>
+        <div class="rating-item">
+          <div class="rating-label">护城河</div>
+          <div class="rating-bar-row">
+            <el-rate v-model="moat" disabled allow-half :max="5" />
+            <span class="rating-score">{{ moat.toFixed(1) }}</span>
+          </div>
         </div>
       </div>
       <div class="kpi-block">
-        <div class="block-title">财务数据</div>
-        <div class="kpi-item">
-          <span>营收增长</span>
-          <span class="kpi-value green">+12%</span>
+        <div class="block-title-with-icon">
+          <span class="block-icon finance"><el-icon><Money /></el-icon></span>
+          <div class="block-title-text">
+            <span class="block-title">财务数据</span>
+            <span class="block-subtitle">2024年</span>
+          </div>
         </div>
         <div class="kpi-item">
-          <span>自由现金流FCF增长</span>
-          <el-progress :percentage="100" :show-text="false" color="#00B050" style="width: 60%"/>
-          <span class="kpi-value green">+214%</span>
+          <div class="kpi-desc">营收增长</div>
+          <div class="kpi-bar-row">
+            <el-progress class="kpi-progress" :percentage="12" :show-text="false" color="#FFD600"/>
+            <span class="kpi-value yellow">+12%</span>
+          </div>
         </div>
         <div class="kpi-item">
-          <span>现金及现金等价物</span>
-          <span class="kpi-value blue">730亿</span>
+          <div class="kpi-desc">自由现金流FCF增长</div>
+          <div class="kpi-bar-row">
+            <el-progress class="kpi-progress" :percentage="100" :show-text="false" color="#00B050"/>
+            <span class="kpi-value green">+214%</span>
+          </div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-desc">现金及现金等价物</div>
+          <div class="kpi-bar-row">
+            <el-progress class="kpi-progress" :percentage="100" :show-text="false" color="#2196f3"/>
+            <span class="kpi-value blue">730亿</span>
+          </div>
         </div>
       </div>
     </div>
     <!-- 正面和反面 -->
     <div class="pros-cons-row">
       <div class="pros-cons-block">
-        <div class="block-title">正面和反面</div>
+        <div class="block-title-with-icon">
+          <span class="block-icon proscons"><el-icon><CircleClose /></el-icon></span>
+          <div class="block-title-text">
+            <span class="block-title">正面和反面</span>
+          </div>
+        </div>
         <ul class="pros">
-          <li><span class="dot green"></span>广泛的产品布局和护城河，市场份额高</li>
-          <li><span class="dot green"></span>高盈利能力和现金流</li>
-          <li><span class="dot green"></span>AI布局前沿</li>
+          <li><span class="pros-icon"><el-icon><CirclePlusFilled /></el-icon></span>广泛的产品布局广泛，市场渗透率高，品牌处领先</li>
+          <li><span class="pros-icon"><el-icon><CirclePlusFilled /></el-icon></span>非常坚固的护城河</li>
         </ul>
         <ul class="cons">
-          <li><span class="dot red"></span>面临监管的威胁</li>
-          <li><span class="dot red"></span>AI带来的不确定性</li>
-          <li><span class="dot red"></span>国际对头对手的竞争</li>
+          <li><span class="cons-icon"><el-icon><RemoveFilled /></el-icon></span>AI布局相对滞后</li>
+          <li><span class="cons-icon"><el-icon><RemoveFilled /></el-icon></span>面对强大对手的激烈竞争</li>
         </ul>
       </div>
       <!-- 估值A、估值B -->
       <div class="valuation-blocks">
         <div class="valuation-block">
-          <div class="block-title">估值A</div>
-          <div class="valuation-desc">假设以DCF(美元)计算的估值</div>
-          <div class="valuation-row">假设10年FCF年复合增长：<span class="bold">12%</span></div>
-          <div class="valuation-row">Terminal Multiple：<span class="bold">20x</span></div>
-          <div class="valuation-row">目标可行性分析：<span class="green bold">可行性</span></div>
+          <div class="block-title-with-icon">
+            <span class="block-icon valuation"><el-icon><PriceTag /></el-icon></span>
+            <div class="block-title-text">
+              <span class="block-title">估值A</span>
+              <span class="block-subtitle">反向DCF分析</span>
+            </div>
+          </div>
+          <div class="valuation-desc">假设以当前股价（164美元）计算的自由现金流增长：</div>
+          <ul class="valuation-list">
+            <li>未来10年FCF增长：<span class="bold">12%</span></li>
+            <li>终值倍数Terminal Multiple：<span class="bold">20x</span></li>
+            <li>回报率：<span class="bold">10%</span></li>
+          </ul>
+          <div class="valuation-row analysis-row">
+            <span class="valuation-analysis-icon"><el-icon><Clock /></el-icon></span>
+            <span class="valuation-analysis-label">目标可行性分析</span>
+          </div>
+          <div class="valuation-progress-bar">
+            <div class="valuation-progress-green" style="width: 60%"></div>
+            <div class="valuation-progress-gray" style="width: 40%"></div>
+          </div>
+          <div class="valuation-btn green">可行性</div>
         </div>
         <div class="valuation-block">
-          <div class="block-title">估值B</div>
-          <div class="valuation-desc">假设以10年历史FCF增长计算的估值</div>
-          <div class="valuation-row">假设10年FCF年复合增长：<span class="bold">11%</span></div>
-          <div class="valuation-row">Terminal Multiple：<span class="bold">20x</span></div>
-          <div class="valuation-row">公允价值：<span class="bold">$176</span></div>
-          <div class="valuation-row"><span class="green bold">+1% 估值合理</span></div>
+          <div class="block-title-with-icon">
+            <span class="block-icon valuation"><el-icon><PriceTag /></el-icon></span>
+            <div class="block-title-text">
+              <span class="block-title">估值B</span>
+              <span class="block-subtitle">DCF分析</span>
+            </div>
+          </div>
+          <div class="valuation-desc">假设未来10年自由现金流增长缓慢下降：</div>
+          <ul class="valuation-list">
+            <li>未来10年FCF增长：<span class="bold">11%</span></li>
+            <li>终值倍数Terminal Multiple：<span class="bold">20x</span></li>
+            <li>回报率：<span class="bold">10%</span></li>
+          </ul>
+          <div class="valuation-row value-row">
+            <span class="valuation-value-label">公允价值</span>
+            <span class="valuation-value-num">$176</span>
+          </div>
+          <div class="valuation-row analysis-row">
+            <span class="valuation-analysis-icon"><el-icon><Clock /></el-icon></span>
+            <span class="valuation-analysis-label">建议 谨慎看待！</span>
+          </div>
+          <div class="valuation-btn green">+1% 估值合理</div>
         </div>
       </div>
     </div>
@@ -161,7 +242,7 @@
 import { ref, onMounted } from 'vue'
 import * as echarts from 'echarts'
 import { ElProgress, ElRate, ElIcon } from 'element-plus'
-import { TrendCharts, PieChart, Coin, PriceTag } from '@element-plus/icons-vue'
+import { TrendCharts, PieChart, Coin, PriceTag, Search, Money, CircleClose, CirclePlusFilled, RemoveFilled, Clock } from '@element-plus/icons-vue'
 
 const barrier = ref(4.0)
 const product = ref(4.5)
@@ -236,7 +317,7 @@ onMounted(() => {
         name: '收入来源',
         type: 'pie',
         radius: ['40%', '68%'],
-        center: ['58%', '54%'],
+        center: ['50%', '50%'],
         label: {
           show: true,
           position: 'inside',
@@ -246,6 +327,14 @@ onMounted(() => {
             percent: { align: 'center', fontSize: 11, color: '#333', lineHeight: 16 }
           }
         },
+        // labelLayout: (params) => {
+        //   return {
+        //       x: params.rect.x + params.rect.width / 2,
+        //       y: params.rect.y + params.rect.height / 2,
+        //       verticalAlign: 'middle',
+        //       align: 'left'
+        //   }
+        // },
         labelLine: { show: false },
         data: [
           { value: 57, name: '搜索业务', itemStyle: { color: '#e74c3c' } },
@@ -369,13 +458,15 @@ onMounted(() => {
 }
 .chart-block.bar { border-right: 2px solid #d2c3a5; }
 .chart-block.pie { border-right: 2px solid #d2c3a5; }
+.chart-block .block-title {
+  width: 100%;
+}
 .block-title {
   font-size: 32px;
   font-weight: bold;
   margin-bottom: 0;
   color: #111;
   text-align: left;
-  width: 100%;
   line-height: 1.1;
 }
 .sub-title {
@@ -435,20 +526,78 @@ onMounted(() => {
 }
 .kpi-item {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 10px;
+  flex-direction: column;
+  align-items: stretch;
+  margin-bottom: 18px;
   font-size: 15px;
 }
-.kpi-value.green { color: #00b050; font-weight: bold; }
-.kpi-value.yellow { color: #ffd600; font-weight: bold; }
-.kpi-value.blue { color: #2196f3; font-weight: bold; }
-.rating-item {
+.kpi-desc {
+  font-size: 15px;
+  color: #222;
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+.kpi-bar-row {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin-bottom: 10px;
+  gap: 12px;
+}
+.kpi-progress {
+  flex: 1;
+  min-width: 0;
+}
+:deep(.kpi-progress .el-progress-bar__outer) {
+  height: 16px !important;
+  border-radius: 8px;
+  background: #eaeaea;
+}
+:deep(.kpi-progress .el-progress-bar__inner) {
+  border-radius: 8px;
+}
+.kpi-value { color: #222; font-weight: bold; min-width: 48px; text-align: right;}
+.kpi-value.green { color: #00b050; }
+.kpi-value.yellow { color: #ffd600; }
+.kpi-value.blue { color: #2196f3; }
+.rating-item {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin-bottom: 18px;
+  font-size: 16px;
+}
+.rating-label {
   font-size: 15px;
+  color: #222;
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+.rating-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.rating-score {
+  min-width: 32px;
+  background: #111;
+  color: #fff;
+  font-weight: bold;
+  font-size: 18px;
+  border-radius: 10px;
+  padding: 2px 18px;
+  text-align: center;
+  margin-left: 16px;
+  box-shadow: 0 1px 4px #e0e0e0;
+}
+.el-rate {
+  margin: 0;
+  background: #e0e0e0;
+  border-radius: 2px;
+}
+:deep(.rating-bar-row .el-rate__icon) {
+  font-size: 32px !important;
+}
+:deep(.rating-bar-row .el-rate.is-disabled .el-rate__icon--active) {
+  background: #ffe066;
 }
 .pros-cons-row {
   display: flex;
@@ -485,26 +634,157 @@ onMounted(() => {
 .dot.red { background: #ea4335; }
 .valuation-blocks {
   display: flex;
-  flex-direction: column;
-  gap: 12px;
-  flex: 1.2;
+  flex-direction: row;
+  gap: 18px;
+  flex: 2;
 }
 .valuation-block {
-  background: #f5f5f5;
+  background: #fff;
   border-radius: 12px;
-  padding: 12px 18px 12px 18px;
+  padding: 18px 18px 18px 18px;
   box-shadow: 0 1px 6px 0 #ececec;
   margin-bottom: 0;
+  min-width: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 .valuation-desc {
-  font-size: 13px;
+  font-size: 14px;
   color: #888;
   margin-bottom: 4px;
 }
-.valuation-row {
+.valuation-list {
+  list-style: disc inside;
+  padding-left: 0;
+  margin: 0 0 8px 0;
+  color: #222;
   font-size: 15px;
+}
+.valuation-list li {
   margin-bottom: 2px;
 }
-.bold { font-weight: bold; }
-.green { color: #00b050; }
+.valuation-row {
+  display: flex;
+  align-items: center;
+  margin: 8px 0 8px 0;
+}
+.valuation-analysis-icon {
+  color: #111;
+  font-size: 20px;
+  margin-right: 8px;
+}
+.valuation-analysis-label {
+  font-size: 16px;
+  color: #222;
+  font-weight: bold;
+}
+.valuation-progress-bar {
+  width: 100%;
+  height: 18px;
+  background: #eaeaea;
+  border-radius: 9px;
+  margin: 8px 0 8px 0;
+  display: flex;
+  overflow: hidden;
+}
+.valuation-progress-green {
+  background: #00b050;
+  height: 100%;
+}
+.valuation-progress-gray {
+  background: #eaeaea;
+  height: 100%;
+}
+.valuation-btn.green {
+  background: #00b050;
+  color: #fff;
+  font-weight: bold;
+  font-size: 18px;
+  border-radius: 9px;
+  padding: 4px 24px;
+  margin-top: 8px;
+  display: inline-block;
+}
+.value-row {
+  margin-top: 8px;
+  margin-bottom: 0;
+}
+.valuation-value-label {
+  font-size: 16px;
+  color: #222;
+  font-weight: bold;
+  margin-right: 12px;
+}
+.valuation-value-num {
+  font-size: 32px;
+  color: #111;
+  font-weight: bold;
+}
+.block-title-with-icon {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  gap: 12px;
+}
+.block-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  color: #fff;
+  background: #111;
+  flex-shrink: 0;
+}
+.block-title-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.block-title {
+  font-size: 28px;
+  font-weight: bold;
+  color: #111;
+  line-height: 1.1;
+}
+.block-subtitle {
+  font-size: 15px;
+  color: #888;
+  margin-top: 2px;
+  font-weight: 400;
+}
+.block-icon.proscons {
+  background: #111;
+}
+.block-icon.valuation {
+  background: #111;
+}
+.pros-icon {
+  width: 28px;
+  height: 28px;
+  background: #00b050;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 18px;
+  margin-right: 10px;
+}
+.cons-icon {
+  width: 28px;
+  height: 28px;
+  background: #ea4335;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 18px;
+  margin-right: 10px;
+}
 </style> 
