@@ -1,5 +1,16 @@
 [
   {
+    "date": "2025-05-26 00:00:00",
+    "totalVolume": 4319151.02,
+    "todayVolume": 99671.56,
+    "todayBuyVolume": 49082.24,
+    "todaySellVolume": 50589.32,
+    "todayNetBuyVolume": -1507.0800000000017,
+    "leadStocksCode": "02291.HK",
+    "leadStocksName": "心泰医疗",
+    "leadStocksChangeRate": 18.85
+  },
+  {
     "date": "2025-05-23 00:00:00",
     "totalVolume": 4320658.1,
     "todayVolume": 96364.73,

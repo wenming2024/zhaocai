@@ -165,59 +165,60 @@ import { TrendCharts, PieChart, Coin, PriceTag, Search, Money, CircleClose, Circ
 
 // 统一数据结构
 const statsData = reactive({
-  name: 'Alphabet',
-  code: 'Google',
-  time: '2024年',
+  name: '美团',
+  code: '美团-W',
+  time: '2025年Q1',
   coreMetrics: [
-    { icon: TrendCharts, value: '+26%', desc: '股票年化增长率', time: '2019-2024年' },
-    { icon: PieChart, value: '58%', desc: '毛利率', time: '2024年' },
-    { icon: Coin, value: '16%', desc: 'FCF利润率', time: '2024年' },
-    { icon: PriceTag, value: '$176', desc: '公允价值', time: '2024年' }
+    { icon: TrendCharts, value: '-3.04%', desc: '股票年化增长率', time: '2020年5月-2025年5月' },
+    { icon: PieChart, value: '37.4%', desc: '毛利率', time: '2025年Q1' },
+    { icon: Coin, value: '11.67%', desc: 'FCF利润率', time: '2025年Q1' },
+    { icon: PriceTag, value: '164港币', desc: '公允价值', time: '2025年Q1' }
   ],
   revenueFcf: {
-    x: ['2020', '2021', '2022', '2023', 'LTM'],
-    revenue: [13, 32, 40, 12, 13],
-    fcf: [38, 54, -8, 15, 10]
+    x: ['2021', '2022', '2023', '2024', '2025Q1'],
+    revenue: [1791, 2200, 2767, 3376, 866],
+    fcf: [-40, 114, 405, 572, 101]
   },
   revenueSource: [
-    { value: 57, name: '搜索业务', color: '#e74c3c' },
-    { value: 11, name: '订阅服务', color: '#2986f7' },
-    { value: 11, name: '云服务', color: '#f7d358' },
-    { value: 10, name: 'YouTube', color: '#6fcf97' },
-    { value: 11, name: '其他', color: '#666' }
+    { value: 42, name: '外卖', color: '#e74c3c' },
+    { value: 10, name: '闪购', color: '#2986f7' }, 
+    { value: 22, name: '到店', color: '#f7d358' },
+    { value: 26, name: '新业务', color: '#6fcf97' },
   ],
   region: [
-    { name: 'US', color: '#2986f7', size: 90, font: 28 },
-    { name: 'EMEA', color: '#3b5998', size: 70, font: 22 },
-    { name: 'APAC', color: '#7b8dbb', size: 54, font: 18 },
-    { name: '其他', color: '#111', size: 44, font: 16 }
+    { name: '中国', color: '#2986f7', size: 90, font: 28 },
+    { name: '中东', color: '#3b5998', size: 60, font: 22 },
+    { name: '巴西', color: '#7b8dbb', size: 60, font: 18 },
+    { name: '其他', color: '#111', size: 50, font: 16 }
   ],
   kpi: [
-    { label: '云服务增长率', percent: 100, value: '+30%', color: '#00B050' },
-    { label: 'YouTube广告收入增长', percent: 14, value: '+14%', color: '#FFD600' },
-    { label: '搜索业务增长', percent: 12, value: '+12%', color: '#00B050' }
+    { label: '本地商业增长率', percent: 18, value: '+18%', color: '#00B050' },
+    { label: '新业务亏损收窄', percent: 100, value: '23亿', color: '#FFD600' },
+    { label: '闪购业务增长', percent: 35, value: '+35%', color: '#00B050' }
   ],
   rating: [
-    { label: '管理效率', value: 4.0 },
-    { label: '产品反馈', value: 4.5 },
-    { label: '公司团队', value: 4.4 },
-    { label: '护城河', value: 5.0 }
+    { label: '管理效率', value: 4.5 },
+    { label: '产品反馈', value: 4.0 },
+    { label: '公司团队', value: 4.5 },
+    { label: '护城河', value: 4.0 }
   ],
   finance: [
-    { label: '营收增长', percent: 12, value: '+12%', color: '#FFD600' },
-    { label: '自由现金流FCF增长', percent: 100, value: '+214%', color: '#00B050' },
-    { label: '现金及现金等价物', percent: 100, value: '730亿', color: '#2196f3' }
+    { label: '营收增长', percent: 18, value: '+18%', color: '#FFD600' },
+    { label: '自由现金流FCF增长', percent: 69, value: '+69%', color: '#00B050' },
+    { label: '现金及现金等价物', percent: 100, value: '1150亿', color: '#2196f3' }
   ],
   pros: [
-    { icon: CirclePlusFilled, text: '广泛的产品布局广泛，市场渗透率高，品牌处领先' },
-    { icon: CirclePlusFilled, text: '非常坚固的护城河' }
+    { icon: CirclePlusFilled, text: '即时零售爆发：闪购累计交易用户超5亿，90后占比60%，复购率75%。' },
+    { icon: CirclePlusFilled, text: '协同效应：与外卖共享配送网络，复用率达85%，即时零售日均单量达6815万单（外卖+闪购），2025年目标突破8700万单。' },
+    { icon: CirclePlusFilled, text: '国际化布局：Keeta在沙特进入前三，巴西市场启动试点，复制“技术+本地化”模式，亏损可控。' }
   ],
   cons: [
-    { icon: RemoveFilled, text: 'AI布局相对滞后' },
-    { icon: RemoveFilled, text: '面对强大对手的激烈竞争' }
+    { icon: RemoveFilled, text: '成本压力：骑手社保政策或新增成本76.8亿-148.8亿元，挤压利润率1.5-3个百分点。' },
+    { icon: RemoveFilled, text: '国际化挑战：中东及南美政策合规性风险，需持续本地化运营能力。' },
+    { icon: RemoveFilled, text: '监管风险：反垄断政策持续，本地生活服务竞争加剧。' }
   ],
   valuationA: {
-    desc: '假设以当前股价（164美元）计算的自由现金流增长：',
+    desc: '假设以当前股价（129港币）计算的自由现金流增长：',
     list: [
       { label: '未来10年FCF增长', value: '12%' },
       { label: '终值倍数Terminal Multiple', value: '20x' },
@@ -250,7 +251,7 @@ onMounted(() => {
   // 营收&FCF折线图
   const bar = echarts.init(barChart.value)
   bar.setOption({
-    grid: { left: 40, right: 20, top: 40, bottom: 30 },
+    grid: { left: 60, right: 20, top: 40, bottom: 30 },
     backgroundColor: '#f8f1e6',
     tooltip: { trigger: 'axis' },
     legend: {
@@ -258,8 +259,8 @@ onMounted(() => {
         { name: '营收', icon: 'circle' },
         { name: 'FCF自由现金流', icon: 'circle' }
       ],
-      top: 8,
-      left: 80,
+      top: 0,
+      left: 40,
       itemWidth: 16,
       itemHeight: 16,
       textStyle: { fontWeight: 'bold', fontSize: 15 }
@@ -272,8 +273,8 @@ onMounted(() => {
     },
     yAxis: {
       type: 'value',
-      min: -10,
-      max: 60,
+      min: -50,
+      max: 3500,
       axisLabel: { fontWeight: 'bold', fontSize: 15 },
       axisLine: { lineStyle: { color: '#333', width: 2 } },
       splitLine: { lineStyle: { color: '#e0e0e0' } }
@@ -389,6 +390,7 @@ onMounted(() => {
 .icon-bg {
   width: 48px;
   height: 48px;
+  min-width: 48px;
   background: #222;
   border-radius: 50%;
   display: flex;
@@ -762,6 +764,7 @@ onMounted(() => {
 .pros-icon {
   width: 28px;
   height: 28px;
+  min-width: 28px;
   background: #00b050;
   border-radius: 50%;
   display: inline-flex;
