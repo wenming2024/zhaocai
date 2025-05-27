@@ -170,14 +170,14 @@ const statsData = reactive({
   time: '2025年Q1',
   coreMetrics: [
     { icon: TrendCharts, value: '-3.04%', desc: '股票年化增长率', time: '2020年5月-2025年5月' },
-    { icon: PieChart, value: '37.4%', desc: '毛利率', time: '2025年Q1' },
-    { icon: Coin, value: '11.67%', desc: 'FCF利润率', time: '2025年Q1' },
-    { icon: PriceTag, value: '164港币', desc: '公允价值', time: '2025年Q1' }
+    { icon: PieChart, value: '37.4%', desc: '毛利率', time: '2025年Q1-323/866' },
+    { icon: Coin, value: '11.67%', desc: 'FCF利润率', time: '2025年Q1-101/866' },
+    { icon: PriceTag, value: '200港币', desc: '公允价值-DCF分析', time: '2025年Q1' }
   ],
   revenueFcf: {
-    x: ['2021', '2022', '2023', '2024', '2025Q1'],
-    revenue: [1791, 2200, 2767, 3376, 866],
-    fcf: [-40, 114, 405, 572, 101]
+    x: ['2021', '2022', '2023', '2024'],
+    revenue: [1791, 2200, 2767, 3376],
+    fcf: [-40, 114, 405, 571]
   },
   revenueSource: [
     { value: 42, name: '外卖', color: '#e74c3c' },
@@ -220,22 +220,22 @@ const statsData = reactive({
   valuationA: {
     desc: '假设以当前股价（129港币）计算的自由现金流增长：',
     list: [
-      { label: '未来10年FCF增长', value: '12%' },
-      { label: '终值倍数Terminal Multiple', value: '20x' },
-      { label: '回报率', value: '10%' }
+      { label: '未来5年FCF增长', value: '8.7%' },
+      { label: '终值倍数Terminal Multiple', value: '15x' },
+      { label: '回报率', value: '9.6%' }
     ],
-    progress: 60,
+    progress: 100,
     btn: '可行性'
   },
   valuationB: {
-    desc: '假设未来10年自由现金流增长缓慢下降：',
+    desc: '假设未来5年自由现金流增长缓慢下降：',
     list: [
-      { label: '未来10年FCF增长', value: '11%' },
-      { label: '终值倍数Terminal Multiple', value: '20x' },
-      { label: '回报率', value: '10%' }
+      { label: '未来5年FCF增长', value: '8%' },
+      { label: '终值倍数Terminal Multiple', value: '15x' },
+      { label: '回报率', value: '9.2%' }
     ],
-    value: '$176',
-    btn: '+1% 估值合理'
+    value: '200港币',
+    btn: '+54% 估值低估'
   }
 })
 
@@ -318,8 +318,8 @@ onMounted(() => {
           position: 'inside',
           formatter: '{name|{b}}\n{percent|{d}%}',
           rich: {
-            name: { align: 'center', fontSize: 11, fontWeight: 'bold', color: '#333', lineHeight: 16 },
-            percent: { align: 'center', fontSize: 11, color: '#333', lineHeight: 16 }
+            name: { align: 'center', fontSize: 12, fontWeight: 'bold', color: '#333', lineHeight: 16 },
+            percent: { align: 'center', fontSize: 12, color: '#333', lineHeight: 16 }
           }
         },
         labelLine: { show: false },
@@ -653,6 +653,7 @@ onMounted(() => {
   margin: 8px 0 8px 0;
 }
 .valuation-analysis-icon {
+  display: flex;
   color: #111;
   font-size: 20px;
   margin-right: 8px;
