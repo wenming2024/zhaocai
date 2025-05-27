@@ -1,5 +1,16 @@
 [
   {
+    "date": "2025-05-27 00:00:00",
+    "totalVolume": 4331126.07,
+    "todayVolume": 92411.83,
+    "todayBuyVolume": 52193.44,
+    "todaySellVolume": 40218.39,
+    "todayNetBuyVolume": 11975.050000000003,
+    "leadStocksCode": "02603.HK",
+    "leadStocksName": "吉宏股份",
+    "leadStocksChangeRate": 39.06
+  },
+  {
     "date": "2025-05-26 00:00:00",
     "totalVolume": 4319151.02,
     "todayVolume": 99671.56,
