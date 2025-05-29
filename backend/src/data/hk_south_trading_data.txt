@@ -1,5 +1,27 @@
 [
   {
+    "date": "2025-05-29 00:00:00",
+    "totalVolume": 4339085.72,
+    "todayVolume": 99005.96,
+    "todayBuyVolume": 51693.91,
+    "todaySellVolume": 47312.05,
+    "todayNetBuyVolume": 4381.860000000001,
+    "leadStocksCode": "06060.HK",
+    "leadStocksName": "众安在线",
+    "leadStocksChangeRate": 31.56
+  },
+  {
+    "date": "2025-05-28 00:00:00",
+    "totalVolume": 4334703.86,
+    "todayVolume": 75204.59,
+    "todayBuyVolume": 39391.19,
+    "todaySellVolume": 35813.4,
+    "todayNetBuyVolume": 3577.790000000001,
+    "leadStocksCode": "09885.HK",
+    "leadStocksName": "药师帮",
+    "leadStocksChangeRate": 13.18
+  },
+  {
     "date": "2025-05-27 00:00:00",
     "totalVolume": 4331126.07,
     "todayVolume": 92411.83,
