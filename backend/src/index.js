@@ -1,7 +1,10 @@
 const express = require('express');
 const cors = require('cors');
 const schedule = require('node-schedule');
-const { fetchLatestData, fetchHistoricalData } = require("./services/crawler");
+const {
+  fetchLatestData,
+  fetchHistoricalData,
+} = require("./services/crawlerSouthTrading");
 const dataRoutes = require("./routes/data");
 
 const app = express();
