@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import DataView from '../views/DataView.vue'
 import GoogleStatusView from "../views/GoogleStatusView.vue";
-import MeituanStatusView from "../views/MeituanStatusView.vue";
+import MeituanStatusView from "../views/meituan/MeituanStatusView.vue";
 import GangjiaosuoStatusView from "../views/GangjiaosuoStatusView.vue";
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

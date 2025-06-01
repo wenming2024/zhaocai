@@ -1,5 +1,16 @@
 [
   {
+    "date": "2025-05-30 00:00:00",
+    "totalVolume": 4348732.54,
+    "todayVolume": 94853.38,
+    "todayBuyVolume": 52250.1,
+    "todaySellVolume": 42603.28,
+    "todayNetBuyVolume": 9646.82,
+    "leadStocksCode": "06955.HK",
+    "leadStocksName": "博安生物",
+    "leadStocksChangeRate": 18.2
+  },
+  {
     "date": "2025-05-29 00:00:00",
     "totalVolume": 4339085.72,
     "todayVolume": 99005.96,

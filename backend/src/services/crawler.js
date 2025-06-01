@@ -150,7 +150,7 @@ async function fetchLatestData() {
 
 // 设置定时任务，每天下午5点执行
 function scheduleDailyUpdate() {
-  schedule.scheduleJob("0 17 * * *", async () => {
+  schedule.scheduleJob("0 18 * * *", async () => {
     console.log("开始执行每日数据更新...");
     try {
       await fetchLatestData();
