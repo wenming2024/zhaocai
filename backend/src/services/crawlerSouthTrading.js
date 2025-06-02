@@ -2,6 +2,7 @@ const axios = require("axios");
 const moment = require("moment");
 const schedule = require("node-schedule");
 const SouthTradingData = require("../models/southTradingData");
+const SouthTradingService = require("./southTradingService");
 
 async function fetchHistoricalData() {
   try {
@@ -23,17 +24,23 @@ async function fetchHistoricalData() {
     );
 
     // 转换数据格式
-    const newRecords = response.data.result.data.map((item) => ({
-      date: item.TRADE_DATE.split(" ")[0], // 只保留日期部分
-      totalVolume: item.ACCUM_DEAL_AMT,
-      todayVolume: item.DEAL_AMT,
-      todayBuyVolume: item.BUY_AMT,
-      todaySellVolume: item.SELL_AMT,
-      todayNetBuyVolume: item.BUY_AMT - item.SELL_AMT,
-      leadStocksCode: item.LEAD_STOCKS_CODE,
-      leadStocksName: item.LEAD_STOCKS_NAME,
-      leadStocksChangeRate: item.LS_CHANGE_RATE,
-    }));
+    const newRecords = response.data.result.data.map((item) => {
+      // 统一日期格式为 YYYY-MM-DD
+      const date = moment(item.TRADE_DATE).format("YYYY-MM-DD");
+      // console.log(`处理数据日期: ${date}, 原始日期: ${item.TRADE_DATE}`);
+
+      return {
+        date,
+        totalVolume: item.ACCUM_DEAL_AMT,
+        todayVolume: item.DEAL_AMT,
+        todayBuyVolume: item.BUY_AMT,
+        todaySellVolume: item.SELL_AMT,
+        todayNetBuyVolume: item.BUY_AMT - item.SELL_AMT,
+        leadStocksCode: item.LEAD_STOCKS_CODE,
+        leadStocksName: item.LEAD_STOCKS_NAME,
+        leadStocksChangeRate: item.LS_CHANGE_RATE,
+      };
+    });
 
     // 获取数据库中的最新记录日期
     const latestRecord = await SouthTradingData.findByDateRange(
@@ -43,15 +50,16 @@ async function fetchHistoricalData() {
 
     // 过滤出需要更新的记录
     const existingDates = new Set(
-      latestRecord.map((record) => record.date.toISOString().split("T")[0])
+      latestRecord.map((record) => moment(record.date).format("YYYY-MM-DD"))
     );
+
     const recordsToUpdate = newRecords.filter(
       (record) => !existingDates.has(record.date)
     );
 
     if (recordsToUpdate.length > 0) {
       // 批量插入新记录
-      // await SouthTradingData.bulkCreate(recordsToUpdate);
+      await SouthTradingData.bulkCreate(recordsToUpdate);
       console.log("历史数据更新成功，新增", recordsToUpdate.length, "条记录");
     } else {
       console.log("没有新的历史数据需要更新");
@@ -84,8 +92,14 @@ async function fetchLatestData() {
     );
 
     const latestData = response.data.result.data[0];
+    // 统一日期格式为 YYYY-MM-DD
+    const date = moment(latestData.TRADE_DATE).format("YYYY-MM-DD");
+    console.log(
+      `处理最新数据日期: ${date}, 原始日期: ${latestData.TRADE_DATE}`
+    );
+
     const record = {
-      date: latestData.TRADE_DATE.split(" ")[0], // 只保留日期部分
+      date,
       totalVolume: latestData.ACCUM_DEAL_AMT,
       todayVolume: latestData.DEAL_AMT,
       todayBuyVolume: latestData.BUY_AMT,

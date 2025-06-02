@@ -127,6 +127,36 @@ class SouthTradingService {
   static async bulkSaveData(dataArray) {
     return await SouthTradingData.bulkCreate(dataArray);
   }
+
+  /**
+   * 检查特定日期的数据是否存在
+   * @param {string} date - 日期
+   * @returns {Promise<Object|null>} 数据记录或null
+   */
+  static async checkDateData(date) {
+    // 验证日期格式
+    if (!moment(date).isValid()) {
+      throw new Error("日期格式无效");
+    }
+
+    // 尝试不同的日期格式
+    const formats = [
+      date, // 原始格式
+      moment(date).format("YYYY-MM-DD"), // 标准格式
+      moment(date).format("YYYY-MM-DD HH:mm:ss"), // 带时间格式
+    ];
+
+    for (const format of formats) {
+      const record = await SouthTradingData.findByDate(format);
+      if (record) {
+        console.log(`找到数据，使用格式: ${format}`);
+        return record;
+      }
+    }
+
+    console.log(`未找到数据，尝试过的格式: ${formats.join(", ")}`);
+    return null;
+  }
 }
 
 module.exports = SouthTradingService;
