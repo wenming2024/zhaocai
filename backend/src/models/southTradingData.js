@@ -11,7 +11,7 @@ class SouthTradingData {
 
   static async findByDateRange(startDate, endDate) {
     const [rows] = await db.query(
-      "SELECT * FROM south_trading_data WHERE date BETWEEN ? AND ? ORDER BY date ASC",
+      "SELECT * FROM south_trading_data WHERE date BETWEEN ? AND ? ORDER BY date DESC",
       [startDate, endDate]
     );
     return rows;

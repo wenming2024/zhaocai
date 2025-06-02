@@ -1,5 +1,6 @@
 const moment = require("moment");
 const SouthTradingData = require("../models/southTradingData");
+const DataTransform = require("../utils/dataTransform");
 
 class SouthTradingService {
   /**
@@ -19,7 +20,8 @@ class SouthTradingService {
       throw new Error("指定日期范围内没有数据");
     }
 
-    return data;
+    // 转换数据格式
+    return DataTransform.toResponse(data);
   }
 
   /**
@@ -35,7 +37,8 @@ class SouthTradingService {
       throw new Error("没有可用数据");
     }
 
-    return data[data.length - 1];
+    // 转换数据格式
+    return DataTransform.toResponse(data[data.length - 1]);
   }
 
   /**
@@ -55,38 +58,46 @@ class SouthTradingService {
       throw new Error("指定日期范围内没有数据");
     }
 
+    // 转换数据格式
+    const transformedData = DataTransform.toResponse(data);
+
     // 计算统计数据
     const stats = {
-      totalDays: data.length,
-      totalNetBuyVolume: data.reduce(
-        (sum, record) => sum + record.today_net_buy_volume,
+      totalDays: transformedData.length,
+      totalNetBuyVolume: transformedData.reduce(
+        (sum, record) => sum + record.todayNetBuyVolume,
         0
       ),
       avgNetBuyVolume:
-        data.reduce((sum, record) => sum + record.today_net_buy_volume, 0) /
-        data.length,
+        transformedData.reduce(
+          (sum, record) => sum + record.todayNetBuyVolume,
+          0
+        ) / transformedData.length,
       maxNetBuyVolume: Math.max(
-        ...data.map((record) => record.today_net_buy_volume)
+        ...transformedData.map((record) => record.todayNetBuyVolume)
       ),
       minNetBuyVolume: Math.min(
-        ...data.map((record) => record.today_net_buy_volume)
+        ...transformedData.map((record) => record.todayNetBuyVolume)
       ),
-      totalVolume: data.reduce((sum, record) => sum + record.today_volume, 0),
+      totalVolume: transformedData.reduce(
+        (sum, record) => sum + record.todayVolume,
+        0
+      ),
       avgVolume:
-        data.reduce((sum, record) => sum + record.today_volume, 0) /
-        data.length,
-      leadStocks: data.reduce((acc, record) => {
-        if (!acc[record.lead_stocks_code]) {
-          acc[record.lead_stocks_code] = {
-            code: record.lead_stocks_code,
-            name: record.lead_stocks_name,
+        transformedData.reduce((sum, record) => sum + record.todayVolume, 0) /
+        transformedData.length,
+      leadStocks: transformedData.reduce((acc, record) => {
+        if (!acc[record.leadStocksCode]) {
+          acc[record.leadStocksCode] = {
+            code: record.leadStocksCode,
+            name: record.leadStocksName,
             count: 0,
             totalChangeRate: 0,
           };
         }
-        acc[record.lead_stocks_code].count++;
-        acc[record.lead_stocks_code].totalChangeRate +=
-          record.lead_stocks_change_rate;
+        acc[record.leadStocksCode].count++;
+        acc[record.leadStocksCode].totalChangeRate +=
+          record.leadStocksChangeRate;
         return acc;
       }, {}),
     };
@@ -110,12 +121,14 @@ class SouthTradingService {
    * @returns {Promise<number>} 影响的行数
    */
   static async saveOrUpdateData(data) {
-    const existingRecord = await SouthTradingData.findByDate(data.date);
+    // 转换数据格式
+    const dbData = DataTransform.toDatabase(data);
+    const existingRecord = await SouthTradingData.findByDate(dbData.date);
 
     if (existingRecord) {
-      return await SouthTradingData.update(data.date, data);
+      return await SouthTradingData.update(dbData.date, dbData);
     } else {
-      return await SouthTradingData.create(data);
+      return await SouthTradingData.create(dbData);
     }
   }
 
@@ -125,7 +138,9 @@ class SouthTradingService {
    * @returns {Promise<number>} 影响的行数
    */
   static async bulkSaveData(dataArray) {
-    return await SouthTradingData.bulkCreate(dataArray);
+    // 转换数据格式
+    const dbData = DataTransform.toDatabase(dataArray);
+    return await SouthTradingData.bulkCreate(dbData);
   }
 
   /**
@@ -150,7 +165,7 @@ class SouthTradingService {
       const record = await SouthTradingData.findByDate(format);
       if (record) {
         console.log(`找到数据，使用格式: ${format}`);
-        return record;
+        return DataTransform.toResponse(record);
       }
     }
 

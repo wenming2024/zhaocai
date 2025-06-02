@@ -93,7 +93,7 @@ const updateChart = (data) => {
       trigger: 'axis'
     },
     legend: {
-      data: ['南向累计净买入额', '南向今日交易量', '南向今日净买入额']
+      data: ['南向累计净买入额(亿)', '南向今日交易量(亿)', '南向今日净买入额(亿)']
     },
     xAxis: {
       type: 'category',
