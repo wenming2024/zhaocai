@@ -1,5 +1,8 @@
 <template>
-  <div class="report-view">
+  <div class="report-view" id="report-view">
+    <!-- 导出按钮 -->
+    <export-report target-id="report-view" />
+    
     <!-- 顶部Logo和公司名 -->
     <header-code-name :code="data.code" :name="data.name" />
     
@@ -54,6 +57,7 @@ import Finance from './business/finance.vue'
 import PositiveNegative from './business/positive-negative.vue'
 import EstimateDcf from './business/estimate-dcf.vue'
 import EstimateAntiDcf from './business/estimate-anti-dcf.vue'
+import ExportReport from './common/export-report.vue'
 
 const props = defineProps({
   data: {
@@ -90,6 +94,7 @@ const props = defineProps({
   max-width: 1100px;
   margin: 32px auto;
   font-family: 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+  position: relative; /* 添加相对定位，用于导出按钮的绝对定位 */
 }
 
 .kpi-row {
