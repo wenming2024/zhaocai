@@ -1,5 +1,6 @@
 <template>
-  <div class="data-view">
+  <div class="data-view" id="data-view">
+    <export-report target-id="data-view" />
     <h1>港股南向交易量数据</h1>
     
     <div class="date-range">
@@ -32,6 +33,7 @@ import { ref, onMounted, onUnmounted } from 'vue'
 import axios from 'axios'
 import * as echarts from 'echarts'
 import moment from 'moment'
+import ExportReport from './components/common/export-report.vue'
 
 const API_BASE_URL = 'http://localhost:3000/api'
 const chartContainer = ref(null)

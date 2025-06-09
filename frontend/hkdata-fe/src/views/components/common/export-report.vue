@@ -33,6 +33,7 @@ const exportButton = ref(null)
 
 // 保存原始样式的元素
 const originalStyles = new Map()
+const originalBoxShadowStyles = new Map();
 
 // 处理渐变文字
 const handleGradientText = (element) => {
@@ -74,6 +75,39 @@ const handleGradientText = (element) => {
   });
 }
 
+// 处理 box-shadow 问题
+const handleBoxShadow = (element) => {
+  // 查找所有 Element Plus 输入框相关元素
+  const shadowElements = element.querySelectorAll(
+    '.el-input, .el-date-editor, .el-input__wrapper, input, .el-input__inner'
+  );
+  shadowElements.forEach(el => {
+    const style = window.getComputedStyle(el);
+    if (style.boxShadow && style.boxShadow !== 'none') {
+      // 保存原始样式
+      originalBoxShadowStyles.set(el, {
+        boxShadow: el.style.boxShadow,
+        border: el.style.border
+      });
+      // 尝试解析 box-shadow 颜色
+      let borderColor = '#dcdfe6'; // 默认 Element Plus 边框色
+      const colorMatch = style.boxShadow.match(/rgba?\([^)]+\)|#[0-9a-fA-F]{3,6}/);
+      if (colorMatch) borderColor = colorMatch[0];
+      // 设置 border，去掉 box-shadow
+      el.style.boxShadow = 'none';
+      el.style.border = `1px solid ${borderColor}`;
+    }
+  });
+};
+
+const restoreBoxShadow = () => {
+  originalBoxShadowStyles.forEach((styles, el) => {
+    el.style.boxShadow = styles.boxShadow;
+    el.style.border = styles.border;
+  });
+  originalBoxShadowStyles.clear();
+};
+
 // 恢复原始样式
 const restoreOriginalStyles = () => {
   originalStyles.forEach((styles, element) => {
@@ -101,6 +135,8 @@ const handleCommand = async (command) => {
     try {
       // 处理渐变文字
       handleGradientText(element)
+      // 处理 box-shadow
+      handleBoxShadow(element)
 
       if (command === 'image') {
         await exportAsImage(element)
@@ -110,6 +146,7 @@ const handleCommand = async (command) => {
     } finally {
       // 恢复原始样式
       restoreOriginalStyles()
+      restoreBoxShadow()
       // 恢复导出按钮显示
       if (exportButton.value) {
         exportButton.value.style.display = 'block'
