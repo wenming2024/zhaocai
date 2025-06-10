@@ -3,6 +3,7 @@ import DataView from '../views/DataView.vue'
 import GoogleStatusView from "../views/GoogleStatusView.vue";
 import MeituanStatusView from "../views/meituan/MeituanStatusView.vue";
 import GangjiaosuoStatusView from "../views/GangjiaosuoStatusView.vue";
+import ChengjiaoDataView from "../views/ChengjiaoDataView.vue";
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -25,6 +26,11 @@ const router = createRouter({
       path: "/gangjiaosuo-status",
       name: "gangjiaosuo-status",
       component: GangjiaosuoStatusView,
+    },
+    {
+      path: "/chengjiao-south",
+      name: "chengjiao-south",
+      component: ChengjiaoDataView,
     },
   ],
 });
