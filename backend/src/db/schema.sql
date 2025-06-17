@@ -27,4 +27,53 @@ CREATE TABLE IF NOT EXISTS south_trading_data (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     INDEX idx_date (date)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='南向交易数据'; 
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='南向交易数据';
+
+CREATE TABLE `south_chengjiao_hu` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `mutual_type` VARCHAR(8) NOT NULL,
+  `security_code` VARCHAR(16) NOT NULL,
+  `derive_security_code` VARCHAR(16),
+  `security_name` VARCHAR(64),
+  `trade_date` DATE NOT NULL,
+  `close_price` DECIMAL(12,4),
+  `change_rate` DECIMAL(8,4),
+  `net_buy_amt` BIGINT,
+  `rank` INT,
+  `buy_amt` BIGINT,
+  `sell_amt` BIGINT,
+  `deal_amt` BIGINT,
+  `deal_amount` BIGINT,
+  `mutual_ratio` DECIMAL(8,4),
+  `turnoverrate` DECIMAL(12,8),
+  `change` DECIMAL(8,4),
+  UNIQUE KEY (`security_code`, `trade_date`)
+);
+
+CREATE TABLE `south_chengjiao_shen` LIKE `south_chengjiao_hu`;
+
+CREATE TABLE `south_chengjiao` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `mutual_type` VARCHAR(16),
+  `security_code` VARCHAR(16) NOT NULL,
+  `derive_security_code` VARCHAR(16),
+  `security_name` VARCHAR(64),
+  `trade_date` DATE NOT NULL,
+  `close_price` DECIMAL(12,4),
+  `change_rate` DECIMAL(8,4),
+  `hk_net_buyamt` BIGINT,
+  `hksh_rank` INT,
+  `hksh_net_buyamt` BIGINT,
+  `hksh_buy_amt` BIGINT,
+  `hksh_sell_amt` BIGINT,
+  `hksz_rank` INT,
+  `hksz_net_buyamt` BIGINT,
+  `hksz_buy_amt` BIGINT,
+  `hksz_sell_amt` BIGINT,
+  `hk_deal_amt` BIGINT,
+  `deal_amt_sz` BIGINT,
+  `deal_amt_sh` BIGINT,
+  `hk_buy_amt` BIGINT,
+  `hk_sell_amt` BIGINT,
+  UNIQUE KEY (`security_code`, `trade_date`)
+); 

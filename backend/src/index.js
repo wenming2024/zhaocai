@@ -5,6 +5,10 @@ const {
   fetchLatestData,
   fetchHistoricalData,
 } = require("./services/crawlerSouthTrading");
+const {
+  main: crawlerSouthChengjiao,
+} = require("./services/crawlerSouthChengjiao");
+
 const dataRoutes = require("./routes/data");
 
 const app = express();
@@ -20,7 +24,7 @@ app.use("/api/data", dataRoutes);
 // 抓取历史数据
 fetchHistoricalData();
 
-// 定时任务：每天下午4点执行爬虫
+// 定时任务：每天下午6点执行爬虫
 schedule.scheduleJob("0 18 * * *", async () => {
   console.log("开始执行每日数据抓取任务...");
   try {
@@ -30,6 +34,9 @@ schedule.scheduleJob("0 18 * * *", async () => {
     console.error("数据抓取失败:", error);
   }
 });
+
+// 定时任务：抓取成交数据
+crawlerSouthChengjiao();
 
 // 启动服务器
 app.listen(port, () => {

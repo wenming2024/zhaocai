@@ -2,7 +2,24 @@
   <div class="chengjiao-date-view">
     <el-form :inline="true" @submit.prevent="fetchData">
       <el-form-item label="股票代码">
-        <el-input v-model="code" placeholder="如 01810" style="width: 120px;" />
+        <el-select
+          v-model="code"
+          filterable
+          remote
+          reserve-keyword
+          placeholder="输入代码/名称"
+          :remote-method="fetchCodeSug"
+          :loading="sugLoading"
+          style="width: 220px"
+          @scroll-bottom="loadMoreSug"
+        >
+          <el-option
+            v-for="item in codeSugList"
+            :key="item.security_code"
+            :label="`${item.security_code} ${item.security_name}`"
+            :value="item.security_code"
+          />
+        </el-select>
       </el-form-item>
       <el-form-item label="日期区间">
         <el-date-picker
@@ -29,14 +46,20 @@
 </template>
 
 <script setup>
-import { ref, nextTick } from 'vue'
+import { ref, nextTick, watch } from 'vue'
 import axios from 'axios'
 import * as echarts from 'echarts'
 import moment from 'moment'
+
 const code = ref('')
 const dateRange = ref([])
 const chartRef = ref(null)
 let chart = null
+const codeSugList = ref([])
+const sugLoading = ref(false)
+const sugPage = ref(1)
+const sugTotal = ref(0)
+const sugKeyword = ref('')
 
 const selectQuickRange = (days) => {
   const end = new Date()
@@ -65,6 +88,29 @@ const fetchData = async () => {
   renderChart(res.data)
 }
 
+const fetchCodeSug = async (query) => {
+  sugLoading.value = true
+  sugPage.value = 1
+  sugKeyword.value = query
+  const { data } = await axios.get('http://localhost:3000/api/data/chengjiao/sug', {
+    params: { keyword: query, page: 1, pageSize: 20 }
+  })
+  codeSugList.value = data.list
+  sugTotal.value = data.total
+  sugLoading.value = false
+}
+
+const loadMoreSug = async () => {
+  if (codeSugList.value.length >= sugTotal.value) return
+  sugLoading.value = true
+  sugPage.value += 1
+  const { data } = await axios.get('http://localhost:3000/api/data/chengjiao/sug', {
+    params: { keyword: sugKeyword.value, page: sugPage.value, pageSize: 20 }
+  })
+  codeSugList.value = [...codeSugList.value, ...data.list]
+  sugLoading.value = false
+}
+
 const renderChart = (data) => {
   if (!chart) {
     chart = echarts.init(chartRef.value)
@@ -76,7 +122,7 @@ const renderChart = (data) => {
   // 股价，保留两位小数
   const prices = data.map((item) => item.close_price ? Number(item.close_price).toFixed(2) : null);
   chart.setOption({
-    title: { text: "南向净买入量-" + data[0]["security_name"] },
+    title: { text: "南向净买入量-" + data[0]?.security_name },
     tooltip: { trigger: "axis" },
     xAxis: { type: "category", data: dates },
     yAxis: [
@@ -117,6 +163,13 @@ const renderChart = (data) => {
     ]
   })
 }
+
+// 监听股票代码变化，自动发起请求
+watch(code, (newVal, oldVal) => {
+  if (newVal && dateRange.value && dateRange.value.length === 2) {
+    fetchData()
+  }
+})
 
 </script>
 

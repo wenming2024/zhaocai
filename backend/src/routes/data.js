@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const SouthTradingService = require("../services/southTradingService");
+const SouthChengjiaoService = require("../services/southChengjiaoService");
 
 // 获取指定日期范围的数据
 router.get("/range", async (req, res) => {
@@ -53,6 +54,32 @@ router.get("/stats", async (req, res) => {
     res
       .status(error.message === "日期格式无效" ? 400 : 500)
       .json({ error: error.message || "获取统计数据失败" });
+  }
+});
+
+// 获取某一段时间内，某一支股票港股通每天的净买入数据
+router.get("/hk-net-buy-amt", async (req, res) => {
+  const { code, startDate, endDate } = req.query;
+  const data = await SouthChengjiaoService.getHKNetBuyAmt(
+    code,
+    startDate,
+    endDate
+  );
+  res.json(data);
+});
+
+// 股票代码/公司名 SUG
+router.get("/chengjiao/sug", async (req, res) => {
+  const { keyword = "", page = 1, pageSize = 20 } = req.query;
+  try {
+    const result = await SouthChengjiaoService.searchCodeName(
+      keyword,
+      Number(page),
+      Number(pageSize)
+    );
+    res.json(result);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
   }
 });
 
