@@ -77,3 +77,22 @@ CREATE TABLE `south_chengjiao` (
   `hk_sell_amt` BIGINT,
   UNIQUE KEY (`security_code`, `trade_date`)
 ); 
+
+// 新增一个表，用于存储港股的历史交易数据，数据字段，参见港股历史交易数据.md的K线数据
+CREATE TABLE IF NOT EXISTS hk_stock_history (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    code VARCHAR(20) NOT NULL COMMENT '股票代码',
+    name VARCHAR(100) NOT NULL COMMENT '股票名称',
+    date DATE NOT NULL COMMENT '交易日期',
+    open DECIMAL(10,2) NOT NULL COMMENT '开盘价',
+    high DECIMAL(10,2) NOT NULL COMMENT '最高价',
+    low DECIMAL(10,2) NOT NULL COMMENT '最低价',
+    close DECIMAL(10,2) NOT NULL COMMENT '收盘价',
+    change_rate DECIMAL(10,2) NOT NULL COMMENT '涨跌幅',
+    change_amount DECIMAL(10,2) NOT NULL COMMENT '涨跌额',
+    volume BIGINT NOT NULL COMMENT '成交量',
+    amount DECIMAL(20,2) NOT NULL COMMENT '成交额',
+    turnover_rate DECIMAL(10,2) NOT NULL COMMENT '换手率',
+    amplitude DECIMAL(10,2) NOT NULL COMMENT '振幅',
+    UNIQUE KEY (`code`, `date`)
+);

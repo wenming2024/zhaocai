@@ -4,6 +4,7 @@ import GoogleStatusView from "../views/GoogleStatusView.vue";
 import MeituanStatusView from "../views/meituan/MeituanStatusView.vue";
 import GangjiaosuoStatusView from "../views/GangjiaosuoStatusView.vue";
 import ChengjiaoDataView from "../views/ChengjiaoDataView.vue";
+import HKStockHistoryView from "../views/HKStockHistoryView.vue";
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -31,6 +32,11 @@ const router = createRouter({
       path: "/chengjiao-south",
       name: "chengjiao-south",
       component: ChengjiaoDataView,
+    },
+    {
+      path: "/hk-stock-history",
+      name: "hk-stock-history",
+      component: HKStockHistoryView,
     },
   ],
 });
