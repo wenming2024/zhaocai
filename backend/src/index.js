@@ -11,6 +11,7 @@ const {
 
 const dataRoutes = require("./routes/data");
 const hkStockRoutes = require("./routes/hkStock");
+const hkFinancialRoutes = require("./routes/hkFinancial");
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -22,6 +23,7 @@ app.use(express.json());
 // 路由
 app.use("/api/data", dataRoutes);
 app.use("/api/hk-stock", hkStockRoutes);
+app.use("/api/hk-financial", hkFinancialRoutes);
 
 // 抓取历史数据
 fetchHistoricalData();

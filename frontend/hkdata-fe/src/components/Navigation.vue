@@ -19,6 +19,11 @@
         <span>港股历史交易</span>
       </el-menu-item>
       
+      <el-menu-item index="/hk-financial-data">
+        <el-icon><Document /></el-icon>
+        <span>港股财务数据</span>
+      </el-menu-item>
+      
       <el-menu-item index="/chengjiao-south">
         <el-icon><PieChart /></el-icon>
         <span>成交数据查询</span>
@@ -51,7 +56,8 @@ import {
   PieChart, 
   Monitor, 
   Shop, 
-  OfficeBuilding 
+  OfficeBuilding,
+  Document
 } from '@element-plus/icons-vue'
 
 const route = useRoute()
