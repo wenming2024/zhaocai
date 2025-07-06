@@ -38,9 +38,51 @@ class HKStockTradingService {
         endDate
       );
 
-      // 如果数据库中没有数据，则调用爬虫服务获取
+      // 检查是否需要调用爬虫服务
+      let needCrawler = false;
+
       if (data.length === 0) {
+        // 如果数据库中没有数据，直接调用爬虫
+        needCrawler = true;
         console.log(`数据库中没有港股 ${code} 的历史数据，开始从网络获取`);
+      } else {
+        // 检查数据完整性
+        const dataDates = data.map((item) => item.date).sort();
+        const earliestDataDate = dataDates[0];
+        const latestDataDate = dataDates[dataDates.length - 1];
+        console.log(
+          `数据库中港股 ${code} 的历史数据，最早日期: ${earliestDataDate}，最晚日期: ${latestDataDate}`
+        );
+
+        // 计算日期差值（天数）
+        const startDateDiff = moment(startDate).diff(
+          moment(earliestDataDate),
+          "days"
+        );
+        const endDateDiff = moment(latestDataDate).diff(
+          moment(endDate),
+          "days"
+        );
+        console.log(`开始日期: ${startDate}，结束日期: ${endDate}`);
+        console.log(
+          `开始日期与数据库最早日期的差值: ${startDateDiff}天，结束日期与数据库最晚日期的差值: ${endDateDiff}天`
+        );
+
+        // 如果开始日期或结束日期与数据库数据的差值大于2天，则调用爬虫
+        if (Math.abs(startDateDiff) > 2 || Math.abs(endDateDiff) > 2) {
+          needCrawler = true;
+          console.log(
+            `港股 ${code} 数据不完整，开始日期差值: ${startDateDiff}天，结束日期差值: ${endDateDiff}天，开始从网络获取`
+          );
+        } else {
+          console.log(
+            `从数据库获取到港股 ${code} 历史数据 ${data.length} 条，数据完整`
+          );
+        }
+      }
+
+      // 如果需要调用爬虫服务
+      if (needCrawler) {
         await checkAndFillMissingData(code, startDate, endDate);
 
         // 重新从数据库获取数据
@@ -53,8 +95,6 @@ class HKStockTradingService {
         if (data.length === 0) {
           throw new Error(`无法获取港股 ${code} 在指定日期范围内的历史数据`);
         }
-      } else {
-        console.log(`从数据库获取到港股 ${code} 历史数据 ${data.length} 条`);
       }
 
       // 计算统计数据

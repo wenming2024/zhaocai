@@ -122,16 +122,16 @@ async function fetchAndSaveHKStockHistory(code, startDate, endDate) {
 async function checkAndFillMissingData(code, startDate, endDate) {
   try {
     // 检查数据库中是否已有数据
-    const hasData = await HKStockHistory.hasDataInRange(
-      code,
-      startDate,
-      endDate
-    );
+    // const hasData = await HKStockHistory.hasDataInRange(
+    //   code,
+    //   startDate,
+    //   endDate
+    // );
 
-    if (hasData) {
-      console.log(`港股 ${code} 在指定日期范围内已有数据，无需补充`);
-      return [];
-    }
+    // if (hasData) {
+    //   console.log(`港股 ${code} 在指定日期范围内已有数据，无需补充`);
+    //   return [];
+    // }
 
     // 获取缺失的数据
     console.log(`港股 ${code} 在指定日期范围内缺少数据，开始获取`);
