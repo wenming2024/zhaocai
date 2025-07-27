@@ -74,6 +74,7 @@ class HKFinancialService {
    * @returns {Promise<Object>} 查询结果
    */
   async getFinancialDataByDate(securityCode, reportDate, options = {}) {
+    console.log("getFinancialDataByDate", securityCode, reportDate);
     try {
       console.log(
         `[Service] 查询股票特定报告期财务数据: ${securityCode}, ${reportDate}`

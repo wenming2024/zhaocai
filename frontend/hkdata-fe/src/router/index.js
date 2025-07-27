@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import DataView from '../views/DataView.vue'
 import GoogleStatusView from "../views/GoogleStatusView.vue";
 import MeituanStatusView from "../views/meituan/MeituanStatusView.vue";
+import TengxunStatusView from "../views/tengxun/TengxunStatusView.vue";
 import GangjiaosuoStatusView from "../views/GangjiaosuoStatusView.vue";
 import ChengjiaoDataView from "../views/ChengjiaoDataView.vue";
 import HKStockHistoryView from "../views/HKStockHistoryView.vue";
@@ -23,6 +24,11 @@ const router = createRouter({
       path: "/meituan-status",
       name: "meituan-status",
       component: MeituanStatusView,
+    },
+    {
+      path: "/tengxun-status",
+      name: "tengxun-status",
+      component: TengxunStatusView,
     },
     {
       path: "/gangjiaosuo-status",

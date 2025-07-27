@@ -1,0 +1,23 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+backend的目录结构如下：
+（1）service目录
+提供前端使用的api，封装数据的组装业务逻辑，涉及到爬虫的api和爬虫数据处理，可以单独拆出，方便多个服务共用
+（2）models目录
+直接和数据库交互，负责数据的CRUD操作
+（3）routes目录
+负责注册后端服务的访问路径
+（4）db目录
+负责创建table的sql语句
+
+frontend的目录结构如下：
+（1）views目录
+提供页面组件，页面组件的公共组件放到views/components目录，其中公共非业务组件放到common目录，公共业务组件放到business目录
+组件命名以大写字母开头
+（2）router目录
+组册前端路页面由
+
+

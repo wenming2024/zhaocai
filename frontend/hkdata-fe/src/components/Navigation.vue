@@ -39,6 +39,11 @@
         <span>美团状态</span>
       </el-menu-item>
       
+      <el-menu-item index="/tengxun-status">
+        <el-icon><ChatDotRound /></el-icon>
+        <span>腾讯状态</span>
+      </el-menu-item>
+      
       <el-menu-item index="/gangjiaosuo-status">
         <el-icon><OfficeBuilding /></el-icon>
         <span>港交所状态</span>
@@ -57,7 +62,8 @@ import {
   Monitor, 
   Shop, 
   OfficeBuilding,
-  Document
+  Document,
+  ChatDotRound
 } from '@element-plus/icons-vue'
 
 const route = useRoute()

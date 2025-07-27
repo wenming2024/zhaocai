@@ -1,6 +1,7 @@
-const express = require('express');
-const cors = require('cors');
-const schedule = require('node-schedule');
+require("dotenv").config();
+const express = require("express");
+const cors = require("cors");
+const schedule = require("node-schedule");
 const {
   fetchLatestData,
   fetchHistoricalData,
@@ -12,6 +13,7 @@ const {
 const dataRoutes = require("./routes/data");
 const hkStockRoutes = require("./routes/hkStock");
 const hkFinancialRoutes = require("./routes/hkFinancial");
+const financialReportRoutes = require("./routes/financialReport");
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -24,6 +26,7 @@ app.use(express.json());
 app.use("/api/data", dataRoutes);
 app.use("/api/hk-stock", hkStockRoutes);
 app.use("/api/hk-financial", hkFinancialRoutes);
+app.use("/api/financial-report", financialReportRoutes);
 
 // 抓取历史数据
 fetchHistoricalData();
@@ -45,4 +48,4 @@ crawlerSouthChengjiao();
 // 启动服务器
 app.listen(port, () => {
   console.log(`服务器运行在 http://localhost:${port}`);
-}); 
+});
